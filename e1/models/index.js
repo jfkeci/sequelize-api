@@ -1,10 +1,9 @@
-import dbConfig from '../config/dbConfig.js'
+import { dbConfig } from '../config/dbConfig.js'
 
 import { Sequelize, DataTypes } from 'sequelize'
 
-import Product from './Product'
-import Review from './Review'
-
+import Product from './Product.js'
+import Review from './Review.js'
 
 const sequelize = new Sequelize(
     dbConfig.DB_DATABASE,
@@ -13,8 +12,9 @@ const sequelize = new Sequelize(
     {
         host: dbConfig.DB_HOST,
         dialect: dbConfig.dialect,
-        operatorsAliases: false,
-        pool: dbConfig.pool
+        operatorsAliases: 0,
+        pool: dbConfig.pool,
+        port: 3308
     }
 )
 
@@ -41,4 +41,4 @@ db.sequelize.sync({ force: false })
     })
 
 
-module.exports = db
+export default db
