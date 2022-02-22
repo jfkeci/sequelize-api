@@ -11,13 +11,13 @@ export const createProduct = async (req, res) => {
 }
 
 export const getProducts = async (req, res) => {
-    const products = Product.findAll({});
+    const products = await Product.findAll({});
 
     return res.status(200).json(products)
 }
 
 export const getProduct = async (req, res) => {
-    const product = await Product.find({ where: { id: req.params.id } })
+    const product = await Product.findAll({ where: { id: req.params.id } })
 
     res.status(200).json(product)
 }

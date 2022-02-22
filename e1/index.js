@@ -3,6 +3,7 @@ import cors from 'cors'
 import dotenv from 'dotenv'
 
 import productRoutes from './routes/products.js'
+import reviewRoutes from './routes/reviews.js'
 
 dotenv.config()
 
@@ -19,6 +20,7 @@ const PORT = process.env.PORT || 8080
 }) */
 
 app.use('/api/products', productRoutes)
+app.use('/api/reviews', reviewRoutes)
 
 app.listen(PORT, () => {
     console.log('Server is running on port ' + PORT)
