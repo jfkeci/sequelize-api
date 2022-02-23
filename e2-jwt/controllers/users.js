@@ -13,7 +13,7 @@ export const getUsers = async (req, res) => {
 }
 
 export const getUser = async (req, res) => {
-    let user = await User.findAll({ where: { id: req.params.id } })
+    let user = await User.findOne({ where: { id: req.params.id } })
 
     if (!user) return res.status(404).json({ message: 'No user found' })
 
@@ -47,9 +47,7 @@ export const registerUser = async (req, res) => {
 export const loginUser = async (req, res) => {
     const { email, password } = req.body
 
-    let user = await User.findAll({ where: { email: email } })
-
-    user = user[0]
+    let user = await User.findOne({ where: { email: email } })
 
     if (!user) return res.status(404).json({ message: 'No user found' })
 
@@ -58,5 +56,4 @@ export const loginUser = async (req, res) => {
     if (!validPassword) return res.status(400).json({ message: 'Invalid credentials' })
 
     return res.status(200).json({ message: 'Successfully logged in', user: user })
-
 }
